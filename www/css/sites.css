@@ -1,0 +1,112 @@
+body {
+  margin: 30px;
+  text-align: center;
+}
+
+.modal {
+  display: none;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 30px;
+  border: 3px solid #00c251;
+  width: 30%;
+}
+
+  .exit {
+    color: #e70000;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .exit:hover,
+  .exit:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .classDivCategories {
+    display: flex;
+  }
+
+  .classDivCategories button {
+    margin: 5px;
+  }
+
+  .classDivCategories li {
+    margin: 5px;
+  }
+
+  #bttnGenPass {
+    margin: 5px;
+  }
+
+#tablaSites {
+border: 2px solid black;
+border-radius: 5%;
+width: 45%;
+margin: 20px;
+padding: 20px;
+}
+
+
+.classDivSites {
+    display: flex;
+  }
+
+  .classDivSites button {
+    width: 25%;
+    margin: 5px;
+  }
+
+  .classDivSites li {
+    width: 50%;
+    list-style: none;
+    margin: 5px;
+  }
+
+.titulosSite{
+    margin: 2em;
+}
+
+
+#indexSites button {
+  width: 25%;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+
+#indexSites {
+  width: 100%;
+}
+
+#indexSites td, #indexSites th {
+  padding: 10px;
+}
+
+#indexSites tr:nth-child(even){background-color: #f2f2f2;}
+
+#indexSites th {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+  text-align: center;
+  background-color: cadetblue;
+  color: white;
+}
