@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/sites.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Sites</title>
+</head>
+
+<body>
+  <main>
+    <br>
+    <br>
+    <h1 class="display-3">List of Sites</h1>
+    <br>
+    <br>
+    <a class="btn btn-primary" href="index.html">Back</a>
+    <button class="btn" onclick="functionAddSite()">Add New Site</button>
+    <br>
+    <br>
+    <table id="indexSites">
+      <tr>
+          <th>Site Name</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th></th>
+      </tr>
+    </table>
+    
+    <form name="dataSites">
+    </form>
+
+  </main>
+  </div>
+  <div id="functionAddSite" class="modal">
+    <form name="data">
+      <div class="modal-content">
+        <span id="windowFunctionSite" class="exit">&times;</span>
+        <h1 class="display-4">New Site</h1>
+        <p>Site Name</p>
+          <input type="text" class="form-control" id="newSiteName">
+          <br>
+        <p>User</p>
+          <input type="text" class="form-control" id="newUsernameSite">
+          <br>
+        <p>Password</p>
+          <input type="text" class="form-control" id="newPasswordSite">
+          <br><button id="bttnGenPass" type="button" class="btn"
+            onclick="functionGeneratePassword()">Generate New Password</button>
+          <a></a>
+          <br>
+          <br>
+          <input type="button"  class="btn btn-success" value="Add New Site" onclick="registerNewSite()">
+        </p>
+    </form>
+    <form name="dataSites">
+    </form>
+  </div>
+  <script>
+    let drawSites = (dataSites) => {
+      dataSites.forEach(site => {
+        let parent = document.getElementsByTagName('table')[0]
+        let newRow = document.createElement('tr')
+        let dataName = document.createElement('td')
+        let dataUser = document.createElement('td')
+        let dataPass = document.createElement('td')
+
+
+        let bttnRemoveSite = document.createElement('button')
+        bttnRemoveSite.innerHTML = "Remove";
+        bttnRemoveSite.className = 'btn btn-danger';
+        bttnRemoveSite.onclick = function () {
+          removeSite(site.id)
+        };
+
+        dataName.innerText = site.name
+        dataUser.innerText = site.user
+        dataPass.innerText = site.password
+
+        newRow.append(dataName)
+        newRow.append(dataUser)
+        newRow.append(dataPass)
+        newRow.append(bttnRemoveSite)
+        parent.append(newRow)
+        
+
+      })
+    }
+
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    let categoryId = params.get("categoryId");
+    fetch("http://localhost:3000/categories/" + categoryId)
+      .then(res => res.json())
+      .then(data => drawSites(data))
+  </script>
+</body>
+<script src="site.js"></script>
+
+</html>

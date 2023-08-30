@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet" crossorigin="anonymous">
+  <title>Categorias</title>
+</head>
+
+<body>
+
+  <main>
+    <h1>"LastPass" Password Manager</h1>
+    <br>
+    <br>
+    <br>
+    <h3>Categories</h2>
+    <button class="btn" onclick="functionAddCategory()">Create New Category</button>
+    <br>
+    <br>
+    <table id="indexCategories">
+      <tr>
+          <th>Category Name</th>
+          <th>Actions</th>
+      </tr>
+    </table>
+  </main>
+  
+  <div id="functionAddCategory" class="modal">
+    <form name="data">
+      <div class="modal-content">
+        <span id="windowFunctionCat" class="exit">&times;</span>
+        <br>
+        <h1 class="display-4">New Category</h1>
+        <br>
+        <p>Category Name</p>
+        <br>
+        <input type="text" class="form-control" id="nameNewCategory">
+        <br>
+        <br>
+        <div style="display: flex;">
+        </div>
+        <input type="button" class="btn btn-primary" value="Add" onclick="registerNewCategory()">
+        
+    </form>
+    <form name="dataSites">
+    </form>
+
+  </div>
+  
+  <script>
+    let drawData = (data) => {
+      data.forEach(category => {
+        let parent = document.getElementsByTagName('table')[0]
+        let newRow = document.createElement('tr')
+        let newData = document.createElement('td')
+
+        
+        let bttnDeleteCategory = document.createElement('button')
+        let bttnShowSitesFromCat = document.createElement('button')
+  
+
+        bttnShowSitesFromCat.innerHTML = "View Sites";
+        bttnShowSitesFromCat.className = 'btn btn-primary';
+        bttnDeleteCategory.innerHTML = "Remove";
+        bttnDeleteCategory.className = 'btn btn-danger';
+        
+
+        bttnDeleteCategory.onclick = function () {
+          removeCategory(category.id)
+        };
+        bttnShowSitesFromCat.onclick = function () {
+          window.location.href = "site.html?categoryId=" + category.id;
+        };
+
+        newData.innerText = category.name
+        newRow.append(newData)
+        newRow.append(bttnShowSitesFromCat)
+        newRow.append(bttnDeleteCategory)
+        parent.append(newRow)
+      })
+    }
+
+    fetch("http://localhost:3000/categories")
+      .then(res => res.json())
+      .then(data => drawData(data))
+  </script>
+</body>
+
+<script src="index.js"></script>
+
+</html>
